@@ -20,7 +20,7 @@ const mockedData = [
 
 const useFetchMock = useFetch as jest.Mock;
 
-describe("App", () => {
+describe("ToDo App Homepage Test", () => {
 
   beforeEach(() => {
     useFetchMock.mockReturnValue({ data: mockedData, error: null });
@@ -30,11 +30,11 @@ describe("App", () => {
     render(<App />);
 
     const headerElement = screen.getByText(/Todo App/i);
-    
+
     expect(headerElement).toBeInTheDocument();
   });
 
-  test('gets all IDs from the table', () => {
+  test('gets all todos IDs from the table', () => {
     render(<App />);
   
     const tdElements = screen.queryAllByRole('cell')
@@ -45,7 +45,7 @@ describe("App", () => {
     expect(ids).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   });
 
-  test("renders todos after loading", async () => {
+  test("renders todos mock and check if they are rendered without loading", async () => {
     render(<App />);
 
     const todoElement = await waitFor(() => screen.getByText("Todo 1"));
@@ -97,6 +97,27 @@ describe("App", () => {
     expect(firstRow).toHaveTextContent("TODO");
   });
 
+  test("handles adding a new todo", async () => {
+    render(<App />);
+    const inputElement = screen.getByPlaceholderText(/Add a new todo/i);
+
+    const addButtonElement = screen.getByRole("button", { name: /Add Todo/i });
+
+    fireEvent.change(inputElement, { target: { value: "New Todo" } });
+
+    fireEvent.click(addButtonElement);
+
+    // Wait for the loading to complete
+    await waitFor(() => {
+      const loadingElement = screen.queryByText("Loading...");
+      expect(loadingElement).not.toBeInTheDocument();
+    });
+
+    const todoElement = screen.getByText("New Todo");
+    
+    expect(todoElement).toBeInTheDocument();
+  });
+
   test("handles completing a todo", async () => {
     render(<App />);
 
@@ -120,26 +141,5 @@ describe("App", () => {
     const deletedRow = screen.queryByText("Todo 1");
 
     expect(deletedRow).not.toBeInTheDocument();
-  });
-
-  test("handles adding a new todo", async () => {
-    render(<App />);
-    const inputElement = screen.getByPlaceholderText(/Add a new todo/i);
-
-    const addButtonElement = screen.getByRole("button", { name: /Add Todo/i });
-
-    fireEvent.change(inputElement, { target: { value: "New Todo" } });
-
-    fireEvent.click(addButtonElement);
-
-    // Wait for the loading to complete
-    await waitFor(() => {
-      const loadingElement = screen.queryByText("Loading...");
-      expect(loadingElement).not.toBeInTheDocument();
-    });
-
-    const todoElement = screen.getByText("New Todo");
-    
-    expect(todoElement).toBeInTheDocument();
   });
 });

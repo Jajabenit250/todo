@@ -13,6 +13,12 @@ h1 {
   margin-bottom: 20px;
 }
 
+h3 {
+  font-size: 18px;
+  font-weight: lighter;
+  text-align: center;
+}
+
 form {
   display: flex;
   justify-content: center;
@@ -50,7 +56,8 @@ table {
   width: 100%;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 8px;
 }
@@ -73,7 +80,7 @@ tr:nth-child(even) {
   justify-content: center;
 }
 
-.actions > button {
+.actions>button {
   font-size: 14px;
   padding: 5px;
   border-radius: 5px;
@@ -83,20 +90,26 @@ tr:nth-child(even) {
   transition: background-color 0.3s ease;
 }
 
-.actions > button:first-child {
+.actions>button:first-child {
   background-color: #2196F3;
   color: #fff;
 }
 
-.actions > button:first-child:hover {
+.actions>button:first-child:hover {
   background-color: #0d8de4;
 }
 
-.actions > button:last-child {
+.actions>button:last-child {
   background-color: #f44336;
   color: #fff;
 }
 
-.actions > button:last-child:hover {
+.actions>button:last-child:hover {
   background-color: #e52c1c;
+}
+
+.new-todo-container {
+  background-color: #F2F3F5;
+  padding: 30px;
+  margin-bottom: 5px
 }

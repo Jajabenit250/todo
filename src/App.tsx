@@ -24,17 +24,22 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1>ToDo App</h1>
-      <form onSubmit={handleAdd}>
-        <input
-          name="Add a new todo"
-          type="text"
-          placeholder="Add a new todo..."
-          value={newTodoTitle}
-          onChange={handleTitleChange}
-        />
-        <button type="submit">Add Todo</button>
-      </form>
 
+      <div className="new-todo-container">
+        <h3> Add new todo item </h3>
+        <form onSubmit={handleAdd}>
+          <input
+            name="Add a new todo"
+            type="text"
+            placeholder="Add a new todo..."
+            value={newTodoTitle}
+            onChange={handleTitleChange}
+          />
+          <button type="submit">Add Todo</button>
+        </form>
+      </div>
+
+      <h3> Click on table column header to sort table </h3>
       {isLoading ? (
         <div className="loading">Loading...</div>
       ) : (
@@ -43,17 +48,17 @@ const App: React.FC = () => {
             <tr>
               <th onClick={() => handleSort("id")}>
                 ID{" "}
-                {sortColumn === "id" && (sortDirection === "asc" ? "▲" : "▼")}
+                {sortColumn === "id" && (sortDirection === "asc" ? "🔼" : "🔽")}
               </th>
               <th onClick={() => handleSort("title")}>
                 Title{" "}
                 {sortColumn === "title" &&
-                  (sortDirection === "asc" ? "▲" : "▼")}
+                  (sortDirection === "asc" ? "🔼" : "🔽")}
               </th>
               <th onClick={() => handleSort("completed")}>
                 Status{" "}
                 {sortColumn === "completed" &&
-                  (sortDirection === "asc" ? "▲" : "▼")}
+                  (sortDirection === "asc" ? "🔼" : "🔽")}
               </th>
               <th>Actions</th>
             </tr>
