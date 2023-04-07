@@ -1,33 +1,35 @@
-import React from 'react';
+import { ItemProps } from "../types";
 
-interface Todo {
-  id: number;
-  task: string;
-  done: boolean;
-}
+function TodoItem({
+  id,
+  title,
+  completed,
+  handleComplete,
+  handleDelete,
+}: ItemProps) {
+  const handleToggle = () => {
+    handleComplete(id);
+  };
 
-interface TodoItemProps {
-  todo: Todo;
-  handleCheckTodo: (id: number) => void;
-  handleDeleteTodo: (id: number) => void;
-}
+  const handleItemDelete = () => {
+    handleDelete(id);
+  };
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo, handleCheckTodo, handleDeleteTodo }) => {
   return (
-    <li key={todo.id} className={todo.done ? 'done' : ''}>
-      <div className="todo">
-        <input
-          type="checkbox"
-          checked={todo.done}
-          onChange={() => handleCheckTodo(todo.id)}
-        />
-        <span>{todo.task}</span>
-      </div>
-      <button className="delete" onClick={() => handleDeleteTodo(todo.id)}>
-        X
-      </button>
-    </li>
+    <tr>
+      <td>{id}</td>
+      <td style={{ textAlign: "left" }}>{title}</td>
+      <td hidden={completed}>
+        <button onClick={handleToggle}>TODO</button>
+      </td>
+      <td hidden={!completed}>
+        <button>✅</button>
+      </td>
+      <td>
+        <button onClick={handleItemDelete}>❌</button>
+      </td>
+    </tr>
   );
-};
+}
 
 export default TodoItem;

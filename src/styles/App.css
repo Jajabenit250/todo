@@ -1,75 +1,102 @@
 .App {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 1rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.todo-list {
-  list-style: none;
-  padding: 0;
-}
-
-.todo-list li {
+form {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: #eee;
+  margin-bottom: 20px;
 }
 
-.todo-list li.done {
-  background-color: #ddd;
-  text-decoration: line-through;
-}
-
-.todo {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.todo input[type='checkbox'] {
-  margin-right: 1rem;
-}
-
-.delete {
-  background-color: #f44336;
+input[type="text"] {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
   border: none;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  margin-right: 10px;
+  flex: 1;
+  outline: none;
+}
+
+button[type="submit"] {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.delete:hover {
-  background-color: #ff6659;
+button[type="submit"]:hover {
+  background-color: #3e8e41;
 }
 
-.new-todo {
-  margin-bottom: 1rem;
-}
-
-.new-todo input[type='text'] {
-  margin-right: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: none;
-  background-color: #eee;
+table {
+  border-collapse: collapse;
   width: 100%;
 }
 
-.new-todo button {
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+th {
+  background-color: #ddd;
   cursor: pointer;
 }
 
-.new-todo button:hover {
-  background-color: #66bb6a;
+th:hover {
+  background-color: #ccc;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.actions > button {
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actions > button:first-child {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.actions > button:first-child:hover {
+  background-color: #0d8de4;
+}
+
+.actions > button:last-child {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.actions > button:last-child:hover {
+  background-color: #e52c1c;
 }
